@@ -9,7 +9,6 @@ namespace BeerExampleApi.Models
         [Required]
         public string Name { get; set; }
         
-        [Required]
         [Range(0, 100)]
         public float Percentage { get; set; }
     }
