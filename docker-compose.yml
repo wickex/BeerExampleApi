@@ -1,0 +1,25 @@
+﻿version: "3.9"
+
+services:
+  api:
+    build: .
+    depends_on:
+      - db
+    ports:
+      - "8080:80"
+    environment:
+      ConnectionString: "Host=db;Username=example_beer_api;Password=secret"
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: example_beer_api
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: example_beer_api
+    volumes:
+      - db:/var/lib/postgresql/data
+  swagger-editor:
+    image: swaggerapi/swagger-editor
+    ports:
+      - "8081:8080"
+volumes:
+  db:
