@@ -19,9 +19,13 @@ namespace BeerExampleApi.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Beer>>> GetBeers()
+        public async Task<ActionResult<IEnumerable<Beer>>> GetBeers([FromQuery(Name = "limit")] int limit = 50, [FromQuery(Name = "offset")] int offset = 0)
         {
-            return await _context.Beers.ToListAsync();
+            return await _context
+                .Beers
+                .Skip(offset)
+                .Take(limit)
+                .ToListAsync();
         }
 
         [HttpGet("{id}")]
