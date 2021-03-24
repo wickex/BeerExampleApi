@@ -11,6 +11,8 @@ services:
       ConnectionString: "Host=db;Username=example_beer_api;Password=secret"
   db:
     image: postgres:13
+    ports:
+      - "5432:5432"
     environment:
       POSTGRES_USER: example_beer_api
       POSTGRES_PASSWORD: secret
